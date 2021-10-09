@@ -9,5 +9,6 @@ export const database = new Sequelize(
         dialect: "postgres",
         host: process.env.DATABASE_HOST,
         port: parseInt(process.env.DATABASE_PORT),
+        logging: true,
     }
 );

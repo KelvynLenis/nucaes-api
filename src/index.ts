@@ -1,12 +1,12 @@
 import express, { json } from 'express';
-import { database } from './database/database';
+import { SyncModels } from './database/models/index';
 import router from './routes';
 
 const app = express();
 app.use(json());
 app.use(router);
+SyncModels();
 
 app.listen(3000, async () => {
-    await database.sync();
     console.log("App running in port 3000");
 });
