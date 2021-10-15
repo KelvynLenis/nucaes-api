@@ -24,6 +24,9 @@ module.exports = (sequelize: any) => {
 
         static associate(models: any) {
             EnterpriseModel.belongsTo(models.UserModel);
+            EnterpriseModel.hasMany(models.BranchModel, {
+                onDelete: 'CASCADE',
+            });
         }
     };
 
