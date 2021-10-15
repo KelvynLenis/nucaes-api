@@ -10,7 +10,7 @@ interface IOrderProps {
 }
 
 class OrderService {
-    async execute({ status, date }: IOrderProps){
+    async create({ status, date }: IOrderProps){
 
         const orderAlreadyExists = await OrderModel.findOne({
             where: {

@@ -7,7 +7,7 @@ class ItemController {
 
         const itemService = new ItemService();
 
-        const items = await itemService.execute({
+        const items = await itemService.create({
             final_price,
             amount,
         });

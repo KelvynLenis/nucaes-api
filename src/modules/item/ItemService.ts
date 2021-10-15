@@ -10,7 +10,7 @@ interface IItemProps {
 }
 
 class ItemService {
-    async execute({ final_price, amount }: IItemProps){
+    async create({ final_price, amount }: IItemProps){
 
         const itemAlreadyExists = await ItemModel.findOne({
             where: {

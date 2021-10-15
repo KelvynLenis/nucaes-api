@@ -7,7 +7,7 @@ class OrderController {
 
         const orderService = new OrderService();
 
-        const orders = await orderService.execute({
+        const orders = await orderService.create({
             status,
             date,
         });

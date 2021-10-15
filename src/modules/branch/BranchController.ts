@@ -12,7 +12,7 @@ interface IBranchProps {
 }
 
 class BranchController {
-    async handle(req: Request, res: Response){
+    async create(req: Request, res: Response){
         const { phonenumber, schedule, description, zipcode, state, city, street } = req.body;
 
         const branchService = new BranchService();
