@@ -1,12 +1,13 @@
 import express, { json } from 'express';
-import { SyncModels } from './database/models/index';
+import { database } from './database/models/index';
 import router from './routes';
 
 const app = express();
 app.use(json());
 app.use(router);
-SyncModels();
 
-app.listen(3000, async () => {
-    console.log("App running in port 3000");
-});
+database.sequelize.sync().then(() => {
+    app.listen(3333, () => {
+        console.log("App running in port 3333");
+    });
+}).catch(() => console.log("Error on sync database"));

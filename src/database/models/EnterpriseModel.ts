@@ -1,54 +1,57 @@
 'use strict';
 
-import { Model, DataTypes } from 'sequelize';
+import { Model, DataTypes } from "sequelize";
 
-interface UserAttributes {
+interface EnterpriseAttributes {
     id: number;
-    name: string;
-    whatsapp: string;
-    email: string;
-    type: string;
+    cnpj: string;
+    phoneNumber: string;
+    fantasyName: string;
+    corporateName: string;
+    status: string;
     excluded_at: Date;
 }
 
 module.exports = (sequelize: any) => {
-    class UserModel extends Model<UserAttributes> implements UserAttributes {
+    class EnterpriseModel extends Model<EnterpriseAttributes> implements EnterpriseAttributes {
         id!: number;
-        name!: string;
-        whatsapp!: string;
-        email!: string;
-        type!: string;
+        cnpj!: string;
+        phoneNumber!: string;
+        fantasyName!: string;
+        corporateName!: string;
+        status!: string;
         excluded_at: Date;
-        
 
         static associate(models: any) {
-            UserModel.hasOne(models.EnterpriseModel, {
-                onDelete: 'CASCADE', 
-            });
+            EnterpriseModel.belongsTo(models.UserModel);
         }
     };
 
-    UserModel.init({
+    EnterpriseModel.init({
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             allowNull: false,
             primaryKey: true,
         },
-        name: {
+        cnpj: {
             type: DataTypes.STRING,
             allowNull: false,
-        },
-        whatsapp: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        email: {
-            type: DataTypes.STRING,
             unique: true,
+        },
+        phoneNumber: {
+            type: DataTypes.STRING,
             allowNull: false,
         },
-        type: {
+        fantasyName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        corporateName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        status: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -59,9 +62,9 @@ module.exports = (sequelize: any) => {
         }
     }, {
         sequelize,
-        modelName: 'UserModel',
-        tableName: 'users',
+        modelName: 'EnterpriseModel',
+        tableName: 'enterprises',
     });
 
-    return UserModel;
+    return EnterpriseModel;
 }
